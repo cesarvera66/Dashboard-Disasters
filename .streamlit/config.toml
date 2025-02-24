@@ -1,0 +1,6 @@
+[server]
+runOnSave = true
+
+[theme]
+base="light"  # Indica que partimos de un tema claro
+
