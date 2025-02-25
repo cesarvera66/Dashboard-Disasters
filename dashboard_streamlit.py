@@ -183,7 +183,7 @@ fig1 = px.bar(
 fig1.update_traces(marker_color='#264653')
 fig1.update_layout(margin=dict(l=0, r=10, b=10, t=30), yaxis_title=None, xaxis_title=None)
 with g1:
-    st.plotly_chart(fig1, use_container_width=True)
+    st.plotly_chart(fig1.update_layout(xaxis={'fixedrange': True}, yaxis={'fixedrange': True}), use_container_width=True, config={'displayModeBar': False})
     st.caption("Análisis: Esta gráfica permite identificar cuáles son los tipos de desastres más frecuentes, facilitando el enfoque en estrategias de prevención y asignación de recursos.")
 
 
@@ -220,7 +220,7 @@ fig3 = px.line(
 fig3.update_traces(line_color='#7A9E9F')
 fig3.update_layout(margin=dict(l=0, r=10, b=10, t=30), yaxis_title=None, xaxis_title=None)
 with g3:
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig3.update_layout(xaxis={'fixedrange': True}, yaxis={'fixedrange': True}), use_container_width=True, config={'displayModeBar': False})
     st.caption("Análisis: Esta gráfica muestra la evolución en el tiempo de la cantidad total de eventos, permitiendo identificar tendencias y detectar años con mayor actividad de desastres para un análisis histórico y predictivo.")
 
 
@@ -278,7 +278,7 @@ fig_combined.update_layout(
 )
 
 with col1:
-    st.plotly_chart(fig_combined, use_container_width=True)
+    st.plotly_chart(fig_combined.update_layout(xaxis={'fixedrange': True}, yaxis={'fixedrange': True}), use_container_width=True, config={'displayModeBar': False})
     st.caption("Análisis: Esta gráfica combinada muestra el total de afectados por año con barras y, adicionalmente, desglosa la información por subgrupo (o tipo) de desastre mediante líneas. Esto permite identificar tendencias generales y evaluar la contribución específica de cada subgrupo en distintos períodos.")
 
 
@@ -317,7 +317,7 @@ fig_scatter = px.scatter(
     title="Relación entre Personas Afectadas y Daños Económicos"
 )
 
-st.plotly_chart(fig_scatter, use_container_width=True)
+st.plotly_chart(fig_scatter.update_layout(xaxis={'fixedrange': True}, yaxis={'fixedrange': True}), use_container_width=True, config={'displayModeBar': False})
 st.caption("Análisis: Este gráfico de dispersión ilustra la relación entre el número de personas afectadas y los daños económicos. El tamaño de cada punto refleja el número de eventos y el color diferencia el tipo de desastre, facilitando la identificación de patrones y outliers para evaluar correlaciones entre los indicadores.")
 
 # Grafico 7: Mapa estilo Ejemplo
