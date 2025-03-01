@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 # ----------------------------------------------------------------
 # 1) CONFIGURACIÓN DE LA PÁGINA
 # ----------------------------------------------------------------
-st.set_page_config(page_title="Desastres de origen Natural: Análisis Global del Impacto", layout="wide")
+st.set_page_config(page_title="Desastres de origen Natural: Análisis del Impacto Global", layout="wide")
 
 # Encabezado
 st.title("Desastres de origen Natural: Análisis del Impacto Global")
