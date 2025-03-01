@@ -321,30 +321,61 @@ st.plotly_chart(fig_scatter.update_layout(xaxis={'fixedrange': True}, yaxis={'fi
 st.caption("Análisis: Este gráfico de dispersión ilustra la relación entre el número de personas afectadas y los daños económicos. El tamaño de cada punto refleja el número de eventos y el color diferencia el tipo de desastre, facilitando la identificación de patrones y outliers para evaluar correlaciones entre los indicadores.")
 
 # Grafico 7: Mapa estilo Ejemplo
+
+# Agrupar datos por código ISO y sumar los eventos
 df_mapa = df_filtrado.groupby('ISO', as_index=False)['Total Events'].sum()
 
+# Mínimo y máximo de eventos (para range_color)
+min_events = df_mapa['Total Events'].min()
+max_events = df_mapa['Total Events'].max()
+
+# Definimos una escala continua de 0 (blanco) a 1 (rojo oscuro).
+# Plotly requiere que sea una lista de pares [p, color], con p en [0..1].
+color_scale = [
+    [0.0, 'rgb(255,255,255)'],   # Blanco
+    [0.1, 'rgb(255,255,240)'],
+    [0.2, 'rgb(255,255,224)'],
+    [0.3, 'rgb(255,255,0)'],
+    [0.4, 'rgb(255,215,0)'],
+    [0.5, 'rgb(255,165,0)'],
+    [0.6, 'rgb(255,140,0)'],
+    [0.7, 'rgb(255,69,0)'],
+    [0.8, 'rgb(178,34,34)'],
+    [1.0, 'rgb(139,0,0)']        # Rojo oscuro
+]
+
+titulo_mapa = f"Distribución Global de Desastres ({anio_inicio} - {anio_fin})"
+
+
+# Crear el mapa
 fig_mapa = px.choropleth(
     df_mapa,
-    locations='ISO',
+    locations='ISO',              # Debe coincidir con la columna ISO
     color='Total Events',
-    hover_name=df_mapa['ISO'].map(df_filtrado.set_index('ISO')['Country'].to_dict()),
-    color_continuous_scale=px.colors.diverging.Portland, # Escala de color tipo ejemplo (púrpura a amarillo)
-    title='Total de Eventos de Desastres por País'
+    hover_name='ISO',             # O puedes mapear al nombre de país si lo tienes
+    color_continuous_scale=color_scale,
+    range_color=(min_events, max_events),
+    title=titulo_mapa,
+    projection='natural earth',
+    # Si tus ISO son de 3 letras (ej. USA, COL, MEX),
+    # asegúrate de especificar locationmode:
+    # locationmode='ISO-3'
 )
 
+# Ajustes del mapa
 fig_mapa.update_geos(
-    showland=True,     # Mostrar tierra
-    landcolor="whitesmoke", # Color de la tierra (gris muy claro)
-    showcoastlines=True, # Mostrar líneas costeras
-    countrycolor="lightgray", # Color de las fronteras de países
+    showland=True,
+    landcolor="whitesmoke",
+    showcoastlines=True,
+    showframe=False,
+    showcountries=True
 )
 
 fig_mapa.update_layout(
-    margin=dict(l=0, r=0, b=0, t=30),
-    
-    
+    margin=dict(l=10, r=10, b=10, t=40)
 )
 
+# Mostrar en Streamlit
 st.plotly_chart(fig_mapa, use_container_width=True)
 st.caption("Análisis: Este mapa muestra la distribución geográfica del total de eventos de desastres por país, utilizando una escala de color divergente y destacando elementos geográficos para una visualización clara y tradicional.")
 
