@@ -77,7 +77,7 @@ with st.spinner("Actualizando reporte..."):
 
     with col4:
         lista_tipos = ['Todos los desastres'] + sorted(df['Disaster Type'].unique())
-        tipo_desastre = st.selectbox("Tipo de desastre:", lista_tipos, index=0, help="Selecciona el tipo de desastre")
+        tipo_desastre = st.selectbox("Tipo de desastre (opcional):", lista_tipos, index=0, help="Selecciona el tipo de desastre")
 
     # Función para filtrar datos
     def filtrar_df(df, pais, anio_inicio, anio_fin, tipo_desastre):
