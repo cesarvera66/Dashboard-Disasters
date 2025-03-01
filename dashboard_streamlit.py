@@ -320,17 +320,21 @@ fig_scatter = px.scatter(
 st.plotly_chart(fig_scatter.update_layout(xaxis={'fixedrange': True}, yaxis={'fixedrange': True}), use_container_width=True, config={'displayModeBar': False})
 st.caption("Análisis: Este gráfico de dispersión ilustra la relación entre el número de personas afectadas y los daños económicos. El tamaño de cada punto refleja el número de eventos y el color diferencia el tipo de desastre, facilitando la identificación de patrones y outliers para evaluar correlaciones entre los indicadores.")
 
-# Grafico 7: Mapa estilo Ejemplo
+# Grafico 7: Mapa Global de Desastres
 
 # Agrupar datos por código ISO y sumar los eventos
 df_mapa = df_filtrado.groupby('ISO', as_index=False)['Total Events'].sum()
+
+# Crear un diccionario que mapea cada código ISO al nombre del país (usando datos filtrados)
+country_mapping = df_filtrado.drop_duplicates('ISO').set_index('ISO')['Country'].to_dict()
+# Agregar la columna "Country" a df_mapa
+df_mapa['Country'] = df_mapa['ISO'].map(country_mapping)
 
 # Mínimo y máximo de eventos (para range_color)
 min_events = df_mapa['Total Events'].min()
 max_events = df_mapa['Total Events'].max()
 
-# Definimos una escala continua de 0 (blanco) a 1 (rojo oscuro).
-# Plotly requiere que sea una lista de pares [p, color], con p en [0..1].
+# Definir una escala continua de 0 (blanco) a 1 (rojo oscuro)
 color_scale = [
     [0.0, 'rgb(255,255,255)'],   # Blanco
     [0.1, 'rgb(255,255,240)'],
@@ -346,19 +350,17 @@ color_scale = [
 
 titulo_mapa = f"Distribución Global de Desastres ({anio_inicio} - {anio_fin})"
 
-
 # Crear el mapa
 fig_mapa = px.choropleth(
     df_mapa,
     locations='ISO',              # Debe coincidir con la columna ISO
     color='Total Events',
-    hover_name='ISO',             # O puedes mapear al nombre de país si lo tienes
+    hover_name='Country',         # Ahora se muestra el nombre del país
     color_continuous_scale=color_scale,
     range_color=(min_events, max_events),
     title=titulo_mapa,
-    projection='natural earth',
-    # Si tus ISO son de 3 letras (ej. USA, COL, MEX),
-    # asegúrate de especificar locationmode:
+    projection='natural earth'
+    # Si tus ISO son de 3 letras (ej. USA, COL, MEX), activa locationmode:
     # locationmode='ISO-3'
 )
 
