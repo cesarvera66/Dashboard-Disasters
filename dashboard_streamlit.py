@@ -6,11 +6,11 @@ import plotly.graph_objects as go
 # ----------------------------------------------------------------
 # 1) CONFIGURACIÓN DE LA PÁGINA
 # ----------------------------------------------------------------
-st.set_page_config(page_title="Desastres Naturales: Análisis Global del Impacto", layout="wide")
+st.set_page_config(page_title="Desastres de origen Natural: Análisis Global del Impacto", layout="wide")
 
 # Encabezado
-st.title("Desastres Naturales: Análisis del Impacto Global")
-st.markdown("**Descripción:** Este dashboard ofrece una visión global y dinámica del impacto social y económico de los desastres naturales a nivel mundial. A través de la exploración interactiva de datos.")
+st.title("Desastres de origen Natural: Análisis del Impacto Global")
+st.markdown("**Descripción:** Este dashboard ofrece una visión global y dinámica del impacto social y económico de los desastres de origen natural a nivel mundial. A través de la exploración interactiva de datos.")
 
 # ----------------------------------------------------------------
 # 2) CARGA Y LIMPIEZA DE DATOS
@@ -427,11 +427,11 @@ with st.expander("Documentación y Acerca de"):
     st.markdown("""
         **Uso Responsable de la Información:**
 
-        Este dashboard se proporciona con fines **informativos y educativos únicamente**.  El análisis presentado aquí es un resumen de datos disponibles públicamente sobre desastres naturales y **no debe ser interpretado como asesoramiento profesional** para la toma de decisiones en situaciones de emergencia real, planificación de riesgos, políticas públicas o cualquier otra aplicación crítica.
+        Este dashboard se proporciona con fines **informativos y educativos únicamente**.  El análisis presentado aquí es un resumen de datos disponibles públicamente sobre desastres de origen natural y **no debe ser interpretado como asesoramiento profesional** para la toma de decisiones en situaciones de emergencia real, planificación de riesgos, políticas públicas o cualquier otra aplicación crítica.
 
         **Limitaciones Inherentes:**
 
-        * Los datos sobre desastres naturales, aunque valiosos, tienen **limitaciones inherentes** (como se detalla en la sección "Fuente de Datos").  La exhaustividad y precisión de los datos pueden variar.
+        * Los datos sobre desastres de origen natural, aunque valiosos, tienen **limitaciones inherentes** (como se detalla en la sección "Fuente de Datos").  La exhaustividad y precisión de los datos pueden variar.
         * Las visualizaciones y métricas presentadas son **interpretaciones basadas en los datos disponibles** y pueden no reflejar la complejidad total de los eventos de desastre ni todos los factores relevantes.
         * Este dashboard es una **herramienta de análisis exploratorio** y no reemplaza el juicio experto ni la consulta a fuentes de información oficiales y especializadas en gestión de riesgos y desastres.
 
@@ -439,7 +439,7 @@ with st.expander("Documentación y Acerca de"):
 
         El **uso de este dashboard y la interpretación de la información presentada son responsabilidad exclusiva del usuario**.  El creador de este dashboard no asume ninguna responsabilidad por las decisiones o acciones tomadas basándose en la información aquí contenida.
 
-        **Para información oficial y actualizada sobre desastres naturales, siempre consulta fuentes gubernamentales y organizaciones especializadas reconocidas.**
+        **Para información oficial y actualizada sobre desastres de origen natural, siempre consulta fuentes gubernamentales y organizaciones especializadas reconocidas.**
     """, True) # True para permitir Markdown dentro de st.write
 
 
@@ -469,7 +469,7 @@ with st.expander("Documentación y Acerca de"):
 
         * **Describir la distribución** de los desastres por tipo, país y a lo largo del tiempo.
         * **Explorar la relación** entre diferentes variables como personas afectadas, muertes y daños económicos.
-        * **Identificar tendencias** y patrones en los datos de desastres naturales a nivel global.
+        * **Identificar tendencias** y patrones en los datos de desastres de origen natural a nivel global.
 
         Las métricas principales se calculan como **sumatorias** de los valores relevantes (eventos, afectados, muertes, daños) para los filtros seleccionados (país, rango de años, tipo de desastre).
     """)
@@ -478,10 +478,10 @@ with st.expander("Documentación y Acerca de"):
 
     st.write("**Definiciones de Métricas Clave:**")
     st.markdown("""
-        * **Total de Eventos:** Número total de desastres naturales registrados que cumplen los criterios de EM-DAT para el filtro seleccionado.
+        * **Total de Eventos:** Número total de desastres de origen natural registrados que cumplen los criterios de EM-DAT para el filtro seleccionado.
         * **Personas Afectadas:**  Suma del número de personas reportadas como afectadas por los desastres (incluye heridos, damnificados, personas que requieren asistencia inmediata, etc.) para el filtro seleccionado.
-        * **Muertes Totales:** Suma del número de muertes directamente atribuidas a los desastres naturales para el filtro seleccionado.
-        * **Daños Totales (Millones USD):** Suma estimada de los daños económicos directos causados por los desastres naturales, expresados en millones de dólares estadounidenses (USD original).
+        * **Muertes Totales:** Suma del número de muertes directamente atribuidas a los desastres de origen natural para el filtro seleccionado.
+        * **Daños Totales (Millones USD):** Suma estimada de los daños económicos directos causados por los desastres de origen natural, expresados en millones de dólares estadounidenses (USD original).
     """)
 
     st.write("\n***") # Separador visual
